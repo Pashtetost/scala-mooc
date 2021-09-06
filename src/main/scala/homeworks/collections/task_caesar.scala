@@ -18,7 +18,11 @@ object task_caesar {
    * @return зашифрованное слово
    */
   def encrypt(word: String, offset: Int): String =
-    task"Реализуйте метод `encrypt`"()
+    word.toUpperCase.map{ let =>
+      val pos = let + offset%26
+      if (pos > 90) (pos-26).toChar
+      else pos.toChar
+    }
 
   /**
    * @param cipher шифр, который необходимо расшифровать
@@ -26,6 +30,10 @@ object task_caesar {
    * @return расшифрованное слово
    */
   def decrypt(cipher: String, offset: Int): String =
-    task"Реализуйте метод `decrypt`"()
+    cipher.toUpperCase.map{ let =>
+      val pos = let - offset%26
+      if (pos < 65) (pos+26).toChar
+      else pos.toChar
+    }
 
 }
